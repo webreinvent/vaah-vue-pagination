@@ -38,22 +38,35 @@
 
             </ul>
           </div>
+
+          <div class="level-item">
+            <span class="pagination-records">{{data.total}} record(s)</span>
+          </div>
+
           <div class="level-right">
-            <a class="pagination-previous"
-               v-if="data.current_page == 1"
-               disabled>Previous</a>
 
-            <a class="pagination-previous"
-               @click="previousPage()"
-               v-else>Previous</a>
+            <div class="level-item">
 
-            <a class="pagination-next"
-               v-if="data.current_page == data.last_page"
-               disabled="">Next</a>
+              <a class="pagination-previous"
+                 v-if="data.current_page == 1"
+                 disabled>Previous</a>
 
-            <a class="pagination-next"
-               v-else
-               @click="nextPage()">Next</a>
+              <a class="pagination-previous"
+                 @click="previousPage()"
+                 v-else>Previous</a>
+
+            </div>
+
+            <div class="level-item">
+              <a class="pagination-next"
+                 v-if="data.current_page == data.last_page"
+                 disabled="">Next</a>
+
+              <a class="pagination-next"
+                 v-else
+                 @click="nextPage()">Next</a>
+            </div>
+
           </div>
         </div>
 
@@ -150,8 +163,8 @@
     },
     data: function() {
       return {
-        debug: true,
-        version: 'v1.0.8',
+        debug: false,
+        version: 'v1.1.5',
         range: {
           limit: null,
           first: null,
@@ -183,6 +196,11 @@
     methods: {
       generateRange: function()
       {
+
+        this.range.end_dots = false;
+        this.range.last = false;
+        this.range.first = false;
+        this.range.start_dots = false;
 
         this.range.limit = this.limit;
 
@@ -262,11 +280,10 @@
         }
 
 
-        if(this.data.current_page < this.data.last_page)
+        if(this.data.current_page < this.data.last_page && this.data.last_page > 1)
         {
           this.range.end_dots = true;
           this.range.last = true;
-
         }
 
         this.generateRangeList();

@@ -1,6 +1,6 @@
 {
   "name": "vaah-vue-pagination",
-  "version": "1.0.8",
+  "version": "1.1.5",
   "description": "",
   "main": "dist/vaah-vue-pagination.ssr.js",
   "browser": "dist/vaah-vue-pagination.esm.js",
